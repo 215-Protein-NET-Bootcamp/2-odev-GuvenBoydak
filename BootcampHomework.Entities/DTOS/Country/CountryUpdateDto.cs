@@ -1,7 +1,9 @@
 ﻿namespace BootcampHomework.Entities
 {
-    public class CountryAddDto
+    public class CountryUpdateDto
     {
+        public int Id { get; set; }
+
         public string CountryName { get; set; }
 
         public string Continent { get; set; }

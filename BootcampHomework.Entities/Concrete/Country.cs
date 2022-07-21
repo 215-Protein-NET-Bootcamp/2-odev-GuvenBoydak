@@ -8,7 +8,6 @@
 
         public string Currency { get; set; }
 
-        ////Relational Property
-        //public virtual List<Department> Departments { get; set; }
+
     }
 }

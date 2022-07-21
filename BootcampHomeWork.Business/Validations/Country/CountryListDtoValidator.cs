@@ -3,9 +3,9 @@ using FluentValidation;
 
 namespace BootcampHomeWork.Business
 {
-    public class CountryAddDtoValidator:AbstractValidator<CountryAddDto>
+    public class CountryListDtoValidator : AbstractValidator<CountryListDto>
     {
-        public CountryAddDtoValidator()
+        public CountryListDtoValidator()
         {
             RuleFor(x => x.CountryName).NotEmpty().WithMessage("Ülke ismi Boş geçilemez").MaximumLength(30).WithMessage("Ülke ismi maksimum 30 karakter olamlıdır.");
             RuleFor(x => x.Currency).NotEmpty().WithMessage("Para birimi Boş geçilemez").Matches("^[a-zA-Z]*$").Length(3).WithMessage("Para birimi sadece Harf ve ^karakterli olamalıdır.");
