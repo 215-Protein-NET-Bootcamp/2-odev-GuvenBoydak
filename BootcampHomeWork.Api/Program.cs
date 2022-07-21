@@ -1,4 +1,6 @@
-﻿using BootcampHomeWork.Api;
+﻿using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using BootcampHomeWork.Api;
 using BootcampHomeWork.Business;
 using BootcampHomeWork.DataAccess;
 using FluentValidation.AspNetCore;
@@ -13,15 +15,21 @@ builder.Services.AddControllers(option => option.Filters.Add<ValidatorFilterAttr
 //NotFoundFilter 
 builder.Services.AddScoped(typeof(NotFoundFilter<>));
 
+//AutoMapper
+builder.Services.AddAutoMapper(typeof(MapperProfile));
+
+//Autofact
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder => containerBuilder.RegisterModule(new ServiceModules()));
 
 builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<DapperHomeworkDbContext>();
-builder.Services.AddScoped<ICountryRepository,DPCountryRepository>();
-builder.Services.AddScoped<ICountryService,DpCountryService>();
+
 
 
 

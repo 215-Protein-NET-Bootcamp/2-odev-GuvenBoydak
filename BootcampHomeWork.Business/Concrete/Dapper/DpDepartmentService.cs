@@ -3,7 +3,7 @@ using BootcampHomeWork.DataAccess;
 
 namespace BootcampHomeWork.Business
 {
-    public class DpDepartmentService : IBaseService<Department>
+    public class DpDepartmentService : IDepartmentService
     {
         private readonly IDepartmentRepository _departmentRepository;
 

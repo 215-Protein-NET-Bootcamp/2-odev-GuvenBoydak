@@ -71,8 +71,9 @@ namespace BootcampHomeWork.DataAccess
                 //DeletedDate null degilse bir silme işleminin update edildigi anlayıp status'u deleted yapıp pasif delete yapıyoruz.
                 if (entity.DeletedDate != null)
                 {
-                    con.Execute("update countries set @countryname,@continent,@currency,@deleteddate,@status", new
+                    con.Execute("update countries setcountryname=@countryname,continent=@continent,currency=@currency,updateddate=@updateddate,status=@status where id=@id", new
                     {
+                        id=entity.Id,
                         countryname = entity.CountryName,
                         continent = entity.Continent,
                         currency = entity.Currency,
@@ -92,8 +93,9 @@ namespace BootcampHomeWork.DataAccess
                     entity.Currency = updateCountry.Currency != default ? entity.Currency : updateCountry.Currency;
                     entity.UpdatedDate = updateCountry.UpdatedDate != default ? entity.UpdatedDate : updateCountry.UpdatedDate;
 
-                    con.Execute("update countries set @countryname,@continent,@currency,@updateddate,@status", new
+                    con.Execute("update countries set countryname=@countryname,continent=@continent,currency=@currency,updateddate=@updateddate,status=@status where id=@id", new
                     {
+                        id=entity.Id,
                         countryname = entity.CountryName,
                         continent = entity.Continent,
                         currency = entity.Currency,
