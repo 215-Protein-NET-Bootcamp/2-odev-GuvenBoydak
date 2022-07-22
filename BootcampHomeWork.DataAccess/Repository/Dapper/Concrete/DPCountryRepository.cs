@@ -18,7 +18,7 @@ namespace BootcampHomeWork.DataAccess
         {
             using (IDbConnection con = _db.CreateConnection())
             {
-                return await con.QueryAsync<Country>("select * from countries where status != '2'");
+                return await con.QueryAsync<Country>("select * from \"Countries\" where  \"Status\" != '2'");
             }
         }
 
@@ -26,7 +26,7 @@ namespace BootcampHomeWork.DataAccess
         {
             using (IDbConnection con = _db.CreateConnection())
             {
-                return await con.QueryAsync<Country>("select * from countries");
+                return await con.QueryAsync<Country>("select * from  \"Countries\"");
             }
         }
 
@@ -34,7 +34,7 @@ namespace BootcampHomeWork.DataAccess
         {
             using (IDbConnection con = _db.CreateConnection())
             {
-                return await con.QueryFirstOrDefaultAsync<Country>("select * from countries where id=@id", new { id = id });
+                return await con.QueryFirstOrDefaultAsync<Country>("select * from  \"Countries\" where \"id\"=@id", new { id = id });
             }
         }
 
@@ -42,7 +42,7 @@ namespace BootcampHomeWork.DataAccess
         {
             using (IDbConnection con = _db.CreateConnection())
             {
-                await con.ExecuteAsync("insert into countries (countryname, continent, currency,createddate,status) VALUES (@countryname,@continent,@currency,@createddate,@status)",
+                await con.ExecuteAsync("insert into  \"Countries\" ( \"CountryName\", \"continent\", \"currency\",\"createddate\",\"status\") VALUES (@countryname,@continent,@currency,@createddate,@status)",
                     new
                     {
                         countryname = entity.CountryName,
@@ -71,7 +71,7 @@ namespace BootcampHomeWork.DataAccess
                 //DeletedDate null degilse bir silme işleminin update edildigi anlayıp status'u deleted yapıp pasif delete yapıyoruz.
                 if (entity.DeletedDate != null)
                 {
-                    con.Execute("update countries set countryName=@countryName,continent=@continent,currency=@currency,deleteddate=@deleteddate,status=@status where id=@id", new
+                    con.Execute("update  \"Countries\" set \"CountryName\"=@countryName,\"Continent\"=@continent,\"Currency\"=@currency,\"DeletedDate\"=@deleteddate,\"Status\"=@status where \"Id\"=@id", new
                     {
                         id=entity.Id,
                         countryname = entity.CountryName,
@@ -93,7 +93,7 @@ namespace BootcampHomeWork.DataAccess
                     entity.Currency = updateCountry.Currency != default ? entity.Currency : updateCountry.Currency;
                     entity.UpdatedDate = updateCountry.UpdatedDate != default ? entity.UpdatedDate : updateCountry.UpdatedDate;
 
-                    con.Execute("update countries set countryName=@countryname,continent=@continent,currency=@currency,updateddate=@updateddate,status=@status where id=@id", new
+                    con.Execute("update  \"Countries\" set \"CountryName\"=@countryName,\"Continent\"=@continent,\"Currency\"=@currency,\"UpdatedDate\"=@updateddate,\"Status\"=@status where \"Id\"=@id", new
                     {
                         id=entity.Id,
                         countryname = entity.CountryName,

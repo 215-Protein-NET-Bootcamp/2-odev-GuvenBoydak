@@ -5,6 +5,7 @@ using BootcampHomeWork.Business;
 using BootcampHomeWork.DataAccess;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +30,10 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<DapperHomeworkDbContext>();
 
+//Serilog
+builder.Host.UseSerilog();
+Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(builder.Configuration).CreateLogger();
+Log.Information("Application is starting.");
 
 //EntityFramework postgresql entegre
 builder.Services.AddDbContext<EfHomeworkDbContext>(x =>

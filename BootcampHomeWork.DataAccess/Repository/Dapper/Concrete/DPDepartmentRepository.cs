@@ -18,7 +18,7 @@ namespace BootcampHomeWork.DataAccess
         {
             using (IDbConnection con=_db.CreateConnection())
             {
-                return await con.QueryAsync<Department>("select * from departments where status != '2' ");
+                return await con.QueryAsync<Department>("select * from \"Departments\" where \"Status\" != '2' ");
             }
         }
 
@@ -26,7 +26,7 @@ namespace BootcampHomeWork.DataAccess
         {
             using (IDbConnection con = _db.CreateConnection())
             {
-                return await con.QueryAsync<Department>("select * from departments");
+                return await con.QueryAsync<Department>("select * from \"Departments\"");
             }
         }
 
@@ -34,7 +34,7 @@ namespace BootcampHomeWork.DataAccess
         {
             using (IDbConnection con = _db.CreateConnection())
             {
-                return await con.QueryFirstOrDefaultAsync<Department>("select * from departments where id=@id", new { id = id });
+                return await con.QueryFirstOrDefaultAsync<Department>("select * from \"Departments\" where \"Id\"=@id", new { id = id });
             }
         }
 
@@ -42,7 +42,7 @@ namespace BootcampHomeWork.DataAccess
         {
             using (IDbConnection con = _db.CreateConnection())
             {
-                await con.ExecuteAsync("insert into departments (departmentname, countryid,createddate, status) VALUES (@departmentname,@countryid,@createddate,@status)",
+                await con.ExecuteAsync("insert into \"Departments\" (\"DepartmentName\", \"CountryId\",\"CreatedDate\", \"Status\") VALUES (@departmentname,@countryid,@createddate,@status)",
                     new
                     {
                         departmentname = entity.DepartmentName,
@@ -68,7 +68,7 @@ namespace BootcampHomeWork.DataAccess
                 //DeletedDate null degilse bir silme işleminin update edildigi anlayıp status'u deleted yapıp pasif delete yapıyoruz.
                 if (entity.DeletedDate!=null)
                 {
-                    con.Execute("update departments set departmentname=@departmentname,countryid=@countryid,deleteddate=@deleteddate,status=@status  where id=@id", new
+                    con.Execute("update \"Departments\" set \"DepartmentName\"=@departmentname,\"CcountryId\"=@countryid,\"DeletedDate\"=@deleteddate,\"Status\"=@status  where \"Id\"=@id", new
                     {
                         id=entity.Id,
                         departmentname = entity.DepartmentName,
@@ -89,7 +89,7 @@ namespace BootcampHomeWork.DataAccess
 
 
                     //DeletedDate boş ise bir update işlemi olucagı için updateddate'ini verip status'u update e çekiyoruz.
-                    con.Execute("update departments set departmentname=@departmentname,countryid=@countryid,updateddate=@updateddate,status=@status  where id=@id", new
+                    con.Execute("update \"Departments\" set \"DepartmentName\"=@departmentname,\"CcountryId\"=@countryid,\"UpdateDate\"=@updateddate,\"Status\"=@status  where \"Id\"=@id", new
                     {
                         id=entity.Id,
                         departmentname = entity.DepartmentName,

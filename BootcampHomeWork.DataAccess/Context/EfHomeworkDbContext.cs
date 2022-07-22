@@ -13,6 +13,8 @@ namespace BootcampHomeWork.DataAccess
 
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Folder> Folders { get; set; }
+        public DbSet<Department> Departments { get; set; }
+        public DbSet<Country> Countries { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

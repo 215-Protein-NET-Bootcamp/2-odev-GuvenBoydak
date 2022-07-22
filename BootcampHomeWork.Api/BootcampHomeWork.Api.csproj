@@ -11,12 +11,18 @@
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.1.2" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.5" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+
+	  <PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
+	  <PackageReference Include="Serilog.Enrichers.Environment" Version="2.2.0" />
+	  <PackageReference Include="Serilog.Enrichers.Process" Version="2.0.2" />
+	  <PackageReference Include="Serilog.Enrichers.Thread" Version="3.1.0" />
+	  <PackageReference Include="Serilog.Settings.Configuration" Version="3.3.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\BootcampHomeWork.Base\BootcampHomeWork.Base.csproj" />
     <ProjectReference Include="..\BootcampHomeWork.Business\BootcampHomeWork.Business.csproj" />
-    <ProjectReference Include="..\BootcampHomework.Entities\BootcampHomework.Entities.csproj" />
+    <ProjectReference Include="..\BootcampHomework.Entities\BootcampHomework.Entities.csproj" />	  
   </ItemGroup>
 
 </Project>

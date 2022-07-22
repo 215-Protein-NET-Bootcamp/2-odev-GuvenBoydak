@@ -72,5 +72,14 @@ namespace BootcampHomeWork.Api.Controllers
 
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
         }
+
+
+        [HttpGet("{id}[action]")]
+        public async Task<IActionResult> GetEmployeeDetails([FromRoute]int id)
+        {
+             List<EmployeeDetailsDto>  employeeDetails=await _employeeService.GetEmployeeDetails(id);
+
+            return CreateActionResult(CustomResponseDto<List<EmployeeDetailsDto>>.Success(200, employeeDetails));
+        }
     }
 }
