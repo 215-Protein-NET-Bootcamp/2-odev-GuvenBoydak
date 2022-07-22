@@ -1,11 +1,13 @@
-﻿namespace BootcampHomework.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace BootcampHomework.Entities
 {
     public abstract class BaseEntity
     {
         //Costractor sayesinde bu classdan kalıtım alan sınıfın CreatedDate ve Status propertylerine ilk degeri atıyoruz.
         public BaseEntity()
         {
-            CreatedDate = DateTime.Now;
+            CreatedDate = DateTime.UtcNow;
             Status = DataStatus.inserted;
         }
 

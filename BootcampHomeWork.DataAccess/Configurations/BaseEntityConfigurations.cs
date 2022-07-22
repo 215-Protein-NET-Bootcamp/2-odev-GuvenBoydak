@@ -12,7 +12,7 @@ namespace BootcampHomeWork.DataAccess
             builder.Property(x => x.CreatedDate).IsRequired().HasColumnType("date");
             builder.Property(x => x.UpdatedDate).HasColumnType("date");
             builder.Property(x => x.DeletedDate).HasColumnType("date");
-            builder.Property(x => x.Status).HasColumnType("nvarchar(15)");
+            //builder.Property(x => x.Status).HasColumnType("nvarchar(15)");
             builder.HasIndex(x => x.Id);
         }
     }

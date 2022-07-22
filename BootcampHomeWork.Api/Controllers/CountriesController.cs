@@ -31,9 +31,13 @@ namespace BootcampHomeWork.Api.Controllers
 
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById([FromRoute]int id)
+        public async Task<IActionResult> GetById([FromRoute] int id)
         {
-            Country country =await _countryService.GetByIdAsync(id);
+            Country country = await _countryService.GetByIdAsync(id);
+
+            //Girilen İd ait kayıt olup olmadıgını kontrol ediyoruz.
+            if(country==null)
+                return CreateActionResult(CustomResponseDto<NoContentDto>.Fail(404,$"{typeof(Country).Name}({id}) Not Found "));
 
             CountryDto countryDto = _mapper.Map<CountryDto>(country);
 
@@ -53,7 +57,7 @@ namespace BootcampHomeWork.Api.Controllers
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] CountryUpdateDto countryUpdateDto)
         {
-            
+
 
             Country country = _mapper.Map<Country>(countryUpdateDto);
 
@@ -62,10 +66,11 @@ namespace BootcampHomeWork.Api.Controllers
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
         }
 
+
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete([FromRoute]int id)
+        public async Task<IActionResult> Delete([FromRoute] int id)
         {
-           await _countryService.RemoveAsync(id);
+            await _countryService.RemoveAsync(id);
 
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
         }

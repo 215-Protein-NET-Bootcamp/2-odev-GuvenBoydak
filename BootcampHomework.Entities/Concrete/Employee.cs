@@ -7,8 +7,8 @@
         public int DepartmentId { get; set; }
 
         //Relational Property
-        public virtual Department Department { get; set; }
+        ////public virtual Department Department { get; set; }
 
-        public virtual List<Folder> Folders { get; set; }
+        ////public virtual List<Folder> Folders { get; set; }
     }
 }

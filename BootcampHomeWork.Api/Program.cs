@@ -4,6 +4,7 @@ using BootcampHomeWork.Api;
 using BootcampHomeWork.Business;
 using BootcampHomeWork.DataAccess;
 using FluentValidation.AspNetCore;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,8 +13,6 @@ var builder = WebApplication.CreateBuilder(args);
 //Default FluentValidation Filterini devre dışı bırakıp kendi yazdıgımız ValidatorFilterAttribute u ekliyoruz.
 builder.Services.AddControllers(option => option.Filters.Add<ValidatorFilterAttribute>()).AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<CountryAddDtoValidator>());
 
-//NotFoundFilter 
-builder.Services.AddScoped(typeof(NotFoundFilter<>));
 
 //AutoMapper
 builder.Services.AddAutoMapper(typeof(MapperProfile));
@@ -31,6 +30,11 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<DapperHomeworkDbContext>();
 
 
+//EntityFramework postgresql entegre
+builder.Services.AddDbContext<EfHomeworkDbContext>(x =>
+{
+    x.UseNpgsql(builder.Configuration.GetConnectionString("PosgreSql"));
+});
 
 
 

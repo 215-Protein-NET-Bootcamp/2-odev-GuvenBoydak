@@ -32,7 +32,7 @@ namespace BootcampHomeWork.DataAccess
 
         public async Task<bool> InsertAsync(T entity)
         {
-            if(entity != null) 
+            if (entity != null)
             {
                 await _entities.AddAsync(entity);
                 return true;
@@ -45,28 +45,23 @@ namespace BootcampHomeWork.DataAccess
             T deletedEntity = await GetByIdAsync(entity.Id);
             if (deletedEntity != null)
             {
-                deletedEntity.DeletedDate = DateTime.Now;
+                deletedEntity.DeletedDate = DateTime.UtcNow;
                 deletedEntity.Status = DataStatus.deleted;
                 return true;
             }
-            return false;  
-        }
-
-        public  async Task<bool> UpdateAsync(T entity)
-        {
-            T updatedEntity = await GetByIdAsync(entity.Id);
-            if (updatedEntity!=null)
-            {
-                updatedEntity.UpdatedDate = DateTime.Now;
-                updatedEntity.Status = DataStatus.updated;
-                return true;
-            }   
             return false;
         }
 
-        public  async Task<IEnumerable<T>> WhereAsync(Expression<Func<T, bool>> expression)
+        public void Update(T entity)
         {
-            return  await _entities.Where(expression).AsNoTracking().ToListAsync();
+            entity.UpdatedDate = DateTime.UtcNow;
+            entity.Status = DataStatus.updated;
+            _entities.Update(entity);
+        }
+
+        public async Task<IEnumerable<T>> WhereAsync(Expression<Func<T, bool>> expression)
+        {
+            return await _entities.Where(expression).AsNoTracking().ToListAsync();
         }
     }
 }

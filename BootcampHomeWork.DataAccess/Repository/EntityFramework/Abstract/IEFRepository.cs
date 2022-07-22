@@ -9,7 +9,7 @@ namespace BootcampHomeWork.DataAccess
 
         Task<bool> RemoveAsync(T entity);
 
-        Task<bool> UpdateAsync(T entity);
+        void Update(T entity);
 
         Task<T> GetByIdAsync(int id);
 

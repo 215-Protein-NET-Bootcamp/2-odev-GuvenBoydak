@@ -42,7 +42,7 @@ namespace BootcampHomeWork.DataAccess
         {
             using (IDbConnection con = _db.CreateConnection())
             {
-                await con.ExecuteAsync("insert into departments (departmentname, countryid,createddate, status) VALUES @departmentname,@countryid,@createddate,@status",
+                await con.ExecuteAsync("insert into departments (departmentname, countryid,createddate, status) VALUES (@departmentname,@countryid,@createddate,@status)",
                     new
                     {
                         departmentname = entity.DepartmentName,
@@ -68,8 +68,9 @@ namespace BootcampHomeWork.DataAccess
                 //DeletedDate null degilse bir silme işleminin update edildigi anlayıp status'u deleted yapıp pasif delete yapıyoruz.
                 if (entity.DeletedDate!=null)
                 {
-                    con.Execute("update folders set @departmentname,@countryid,@deleteddate,@status", new
+                    con.Execute("update departments set departmentname=@departmentname,countryid=@countryid,deleteddate=@deleteddate,status=@status  where id=@id", new
                     {
+                        id=entity.Id,
                         departmentname = entity.DepartmentName,
                         countryid = entity.CountryId,
                         deleteddate = entity.DeletedDate,
@@ -85,12 +86,12 @@ namespace BootcampHomeWork.DataAccess
 
                     entity.DepartmentName = updatedDepartment.DepartmentName != default ? entity.DepartmentName : updatedDepartment.DepartmentName;
                     entity.CountryId = updatedDepartment.CountryId != default ? entity.CountryId : updatedDepartment.CountryId;
-                    entity.UpdatedDate = updatedDepartment.UpdatedDate != default ? entity.UpdatedDate : updatedDepartment.UpdatedDate;
 
 
                     //DeletedDate boş ise bir update işlemi olucagı için updateddate'ini verip status'u update e çekiyoruz.
-                    con.Execute("update folders set @departmentname,@countryid,@updateddate,@status", new
+                    con.Execute("update departments set departmentname=@departmentname,countryid=@countryid,updateddate=@updateddate,status=@status  where id=@id", new
                     {
+                        id=entity.Id,
                         departmentname = entity.DepartmentName,
                         countryid = entity.CountryId,
                         updateddate = entity.UpdatedDate,

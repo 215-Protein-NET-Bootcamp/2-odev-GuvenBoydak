@@ -34,7 +34,7 @@ namespace BootcampHomeWork.Business
 
         public async Task InsertAsync(T model)
         {
-            bool addedEntity = await _efRepository.InsertAsync(model);
+             await _efRepository.InsertAsync(model);
             await _unitOfWork.CommitAsync();
 
         }
@@ -42,15 +42,14 @@ namespace BootcampHomeWork.Business
         public async Task RemoveAsync(int id)
         {
             T entity = await _efRepository.GetByIdAsync(id);
-            bool deletedEntity = await _efRepository.RemoveAsync(entity);
+             await _efRepository.RemoveAsync(entity);
             await _unitOfWork.CommitAsync();
 
         }
 
         public async Task UpdateAsync(T model)
         {
-            T entity = await _efRepository.GetByIdAsync(model.Id);
-            bool updatedEntity = await _efRepository.UpdateAsync(model);
+            _efRepository.Update(model);
             await _unitOfWork.CommitAsync();
         }
     }

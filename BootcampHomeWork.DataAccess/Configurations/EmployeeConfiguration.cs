@@ -8,7 +8,7 @@ namespace BootcampHomeWork.DataAccess
     {
         public void Configure(EntityTypeBuilder<Employee> builder)
         {
-            builder.Property(x => x.EmployeeName).IsRequired().HasColumnType("nvarchar(20)");
+            //builder.Property(x => x.EmployeeName).IsRequired().HasColumnType("nvarchar(20)");
         }
     }
 }
