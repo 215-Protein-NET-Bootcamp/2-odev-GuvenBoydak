@@ -51,7 +51,7 @@ namespace BootcampHomeWork.Api.Controllers
 
             await _countryService.InsertAsync(country);
 
-            return CreateActionResult(CustomResponseDto<CountryAddDto>.Success(200, countryAddDto));
+            return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
         }
 
         [HttpPut]

@@ -34,7 +34,7 @@ namespace BootcampHomeWork.DataAccess
         {
             using (IDbConnection con = _db.CreateConnection())
             {
-                return await con.QueryFirstOrDefaultAsync<Country>("select * from  \"Countries\" where \"id\"=@id", new { id = id });
+                return await con.QueryFirstOrDefaultAsync<Country>("select * from  \"Countries\" where \"Id\"=@id", new { id = id });
             }
         }
 
@@ -42,7 +42,7 @@ namespace BootcampHomeWork.DataAccess
         {
             using (IDbConnection con = _db.CreateConnection())
             {
-                await con.ExecuteAsync("insert into  \"Countries\" ( \"CountryName\", \"continent\", \"currency\",\"createddate\",\"status\") VALUES (@countryname,@continent,@currency,@createddate,@status)",
+                await con.ExecuteAsync("insert into  \"Countries\" ( \"CountryName\", \"Continent\", \"Currency\",\"CreatedDate\",\"Status\") VALUES (@countryname,@continent,@currency,@createddate,@status)",
                     new
                     {
                         countryname = entity.CountryName,

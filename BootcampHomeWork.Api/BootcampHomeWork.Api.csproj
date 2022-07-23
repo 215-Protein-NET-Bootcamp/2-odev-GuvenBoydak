@@ -24,5 +24,9 @@
     <ProjectReference Include="..\BootcampHomeWork.Business\BootcampHomeWork.Business.csproj" />
     <ProjectReference Include="..\BootcampHomework.Entities\BootcampHomework.Entities.csproj" />	  
   </ItemGroup>
+	
+	<ItemGroup>
+		<InternalsVisibleTo Include="BootcampHomeWork.Test" />
+	</ItemGroup>
 
 </Project>

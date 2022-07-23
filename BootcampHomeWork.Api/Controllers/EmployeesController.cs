@@ -74,7 +74,7 @@ namespace BootcampHomeWork.Api.Controllers
         }
 
 
-        [HttpGet("{id}[action]")]
+        [HttpGet("[action]/{id}")]
         public async Task<IActionResult> GetEmployeeDetails([FromRoute]int id)
         {
              List<EmployeeDetailsDto>  employeeDetails=await _employeeService.GetEmployeeDetails(id);
