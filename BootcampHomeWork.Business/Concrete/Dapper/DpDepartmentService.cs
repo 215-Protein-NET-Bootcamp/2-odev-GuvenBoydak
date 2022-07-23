@@ -29,18 +29,42 @@ namespace BootcampHomeWork.Business
 
         public async Task InsertAsync(Department model)
         {
-            await _departmentRepository.InsertAsync(model);
+            try
+            {
+                await _departmentRepository.InsertAsync(model);
+            }
+            catch (Exception)
+            {
+
+                throw new Exception($"Saving_Error {typeof(Country).Name}");
+            }
         }
 
         public async Task RemoveAsync(int id)
         {
-            Department department = await _departmentRepository.GetByIdAsync(id);
-            _departmentRepository.Remove(department);
+            try
+            {
+                Department department = await _departmentRepository.GetByIdAsync(id);
+                _departmentRepository.Remove(department);
+            }
+            catch (Exception)
+            {
+
+                throw new Exception($"Delete_Error {typeof(Country).Name}");
+            }
         }
 
         public async Task UpdateAsync(Department model)
         {
-            await _departmentRepository.UpdateAsync(model);
+            try
+            {
+                await _departmentRepository.UpdateAsync(model);
+            }
+            catch (Exception)
+            {
+
+                throw new Exception($"Update_Error {typeof(Country).Name}");
+            }
         }
     }
 }
