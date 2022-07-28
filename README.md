@@ -1,3 +1,3 @@
-# Yapılan testlerin  [Görseli](https://imgyukle.com/f/2022/07/23/VtZ9rn.png)
+# Yapılan testlerin  [Görseli](https://i.hizliresim.com/nxmpmhr.png)
 
 #  [Api hakkında postman dökümasyonu](https://documenter.getpostman.com/view/15763755/UzXKWeg4) 
